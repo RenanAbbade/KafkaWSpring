@@ -1,1 +1,36 @@
+Quando utilizar o Kafka?
+
+Existem diversas formas de elaborar uma solução de forma arquiteturaral, sendo REST, SOAP, webservices, troca de arquivos etc.
+O problema de comunicação entre sistemas surge quando os sistemas são de companias diferentes, que demanda então uma nova solução para adequaer-se a diferentes 
+arquiteturas para comunicação, uma nova integração para cada arquitetura particular ou protocolo de comunicação.
+
+Uma das principais ideias do Kafka é centralizar a integração dos sistemas, 
+todos os sistemas se comunicariam diretamente com o kafka para enviar e consumir dados em bytes.
+Logo o Kafka é uma plataforma de data streaming, que compartilha dados em bytes em tempo real entre os sistemas.
+Os sistemas reagindo em tempo real, conforme o fluxo de dados.
+
+Zookeeper
+
+O Kakfa trabalha junto com o zookeeper, que é uma plataforma da apache também, e é essencialmente um serviço para sistemas distribuidos, que oferece
+um armazenamento de chave-valor hierárquico, para fornececer um serviço de configuração distribuida.
+
+Mensagem
+Todos os eventos do Kafka podem ser resumidas em mensagens, sendo produzidas e consumidas através dos topicos.
+As mensagens podem ser desde uma simples String, ou até mesmo um objeto complexo, como JSON ou XML.
+
+Tópicos, Partições e Offsets
+
+Tópico: É uma fila de dados, onde os dados são armazenados de forma sequencial.
+
+Partições: São subdivisões do tópico, por padrão o kafka inicia com uma unica partição.
+
+Offset: Cada partição tem um identificador incremental chamado de offset.
+
+
+
+
+
+
+
+
 
