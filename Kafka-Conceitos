@@ -1,3 +1,18 @@
+A plataforma Kafka é uma plataforma de processamento de streaming de dados de alto desempenho, desenvolvida pelo LinkedIn e atualmente mantida pela Apache Software Foundation.
+
+Kafka é um sistema de mensagens distribuído que permite que os aplicativos enviem e recebam streams de dados em tempo real. Ele pode lidar com grandes volumes de dados em tempo real, tornando-o uma escolha popular para soluções de processamento de big data e IoT.
+
+O Kafka é baseado em um modelo de publicação/assinatura, onde os produtores publicam mensagens em tópicos e os consumidores se inscrevem nesses tópicos para receber as mensagens. O Kafka também oferece recursos de streaming e processamento de fluxo de dados, permitindo que as aplicações processem e analisem dados enquanto eles são transmitidos.
+
+Algumas das principais características do Kafka incluem:
+
+Alta capacidade de escalabilidade horizontal.
+Tolerância a falhas, com replicação e redundância de dados.
+Baixa latência, permitindo o processamento em tempo real.
+Capacidade de lidar com grandes volumes de dados.
+APIs para uma ampla variedade de linguagens de programação.
+O Kafka é usado por muitas empresas para processamento de dados em tempo real, incluindo empresas de mídia social, bancos, empresas de comércio eletrônico e outras que precisam lidar com grandes volumes de dados em tempo real.
+
 Quando utilizar o Kafka?
 
 Existem diversas formas de elaborar uma solução de forma arquiteturaral, sendo REST, SOAP, webservices, troca de arquivos etc.
