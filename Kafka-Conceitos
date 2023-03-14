@@ -13,6 +13,40 @@ Capacidade de lidar com grandes volumes de dados.
 APIs para uma ampla variedade de linguagens de programação.
 O Kafka é usado por muitas empresas para processamento de dados em tempo real, incluindo empresas de mídia social, bancos, empresas de comércio eletrônico e outras que precisam lidar com grandes volumes de dados em tempo real.
 
+O que é uma plataforma de eventos de streaming?
+Streaming é uma tecnologia que permite a transmissão de conteúdo em tempo real, como áudio, vídeo, dados e outras formas de informação, pela Internet. Em vez de baixar um arquivo completo antes de poder visualizá-lo ou usá-lo, o conteúdo é enviado em pequenos pacotes (ou fluxos) e reproduzido à medida que é recebido pelo dispositivo do usuário.
+
+Uma plataforma de streaming por eventos, permite que uma aplicação produza e consuma uma série de dados.
+O produtor e o consumidor atuam de forma independente, sendo que o produtor de uma mensagem não faz ideia de que consumidor irá le-la.
+A plataforma de streaming armazena os streams dos eventos e forma que eles possam ser reproduzidos mais de uma vez se necessário, eventos geralmente
+são retidos em multiplos servidores por conta de conceitos de tolerancia a falhas e avabilidade.
+* A plataforma de streaming compartilha os eventos a medida exata que eles ocorrem.
+
+
+Diferenças entre o tradicional sistema de mensagens (TSM) x Kafka Streaming Platform
+
+TSM: Uma vez que as mensagens são lidas pelos consumidores, as mensagens são removidas do message broker(corretora) em TSM.
+KAFKA: Já no caso do Kafka os eventos são armazenados baseado no tempo de retenção, sendo os eventos imutáveis.
+
+TSM: Brokers tem a responsabilidade de observar o consumo das mensagens, e remove-las quando as mensagens forem lidas.
+KAFKA: No Kafka é responsabilidade dos consumidores observarem o consumo dos mensagens.
+
+TSM: Podem especificar um consumidor target para leitura de mensagens do Broker.
+KAFKA: Qualquer consumidor pode acessar uma mensagem do broker.
+
+TSM: Não seguem os principios de sistemas distribuidos.
+Kafka: É construído acima dos principais principios de sistemas distribuidos.
+
+Fluxo KAFKA Kafka Producers (Producer API)-> Kafka Cluster -> Kafka Consumer (Consumer API)
+
+Em KAFKA Cluster, existem duas API que interagem com KAFKA (Connect API). No geral o Kafka Cluster é formado por Consumer API, Connect API e Streams Api.
+
+A primeira é referente ao Source Connector, para extrair os dados de uma fonte de dados externa, como DB, file system ou um ElasticSearch por exemplo.
+A segunda é Sync Connector que pode performar toda a movimentação dos dados sem escrever uma unica linha de código.
+
+A outra API avançada utilizada pelo KAFKA é a Streams API, que basicamente retira dados do Kafka e performa transformações simples e retorna ao kafka.
+
+
 Quando utilizar o Kafka?
 
 Existem diversas formas de elaborar uma solução de forma arquiteturaral, sendo REST, SOAP, webservices, troca de arquivos etc.
@@ -26,6 +60,8 @@ Os sistemas reagindo em tempo real, conforme o fluxo de dados.
 
 Zookeeper
 
+Basicamente, o zookeper observar a saúde dos brokers, e gerencia o cluster.
+
 O Kakfa trabalha junto com o zookeeper, que é uma plataforma da apache também, e é essencialmente um serviço para sistemas distribuidos, que oferece
 um armazenamento de chave-valor hierárquico, para fornececer um serviço de configuração distribuida.
 
@@ -35,14 +71,29 @@ As mensagens podem ser desde uma simples String, ou até mesmo um objeto complex
 
 Tópicos, Partições e Offsets
 
-Tópico: É uma fila de dados, onde os dados são armazenados de forma sequencial.
+Tópico: É uma fila de dados, onde os dados são armazenados de forma sequencial. Como analogia, tópico é uma entidade com um nome no Kakfa, como uma tabela em uma base de dados.
+Tópicos geralmente se localizam dentro do kafka broker, os clientes kafka utilizam o nome do topico para produzirem e consumirem mensagens.
+O comportamento do consumidor Kafka é continuamente puxar novas mensagens, como um observador/escutador. Então continuamente o consumer está escutando o tópico de nome determinado
+para pegar novas mensagens geradas no devido tópico.
+O comportamento do produtor, em geral, produzem uma mensagem dentro do tópico, quando algo externo invoca este produtor. O produtor usa o nome do tópico determinado
+para produzir uma mensagem.
+
+Logo quando a mensagem é enviada do produtor, ela atinge o tópico Kafka, dentro do Kafka broker, e uma vez que o consumidor é notificado de uma mensagem nova, pois
+ele está continuamente verificando por novas mensagens, então a mensagem é consumida pelo consumidor, e o consumidor realiza certo processamento nos dados recebidos.
+Ainda que o consumidor leia a mensagem, a mensagem permance no tópico dentro do kafka broker, por tempo determiando pela variável retention time (tempo de rentenção).
 
 Partições: São subdivisões do tópico, por padrão o kafka inicia com uma unica partição.
+Partições são onde a mensagem está localizada dentro de um tópico, cada tópico geralmente tem uma ou mais partições, sendo muito comum que existam várias partições
+dentro de um determinado tópico.
+
 
 Offset: Cada partição tem um identificador incremental chamado de offset.
 
 
 
+-------
+
+No arquivo kafka\kafka_2.13-3.4.0\config> server.properties, se tem todas as informações necessárias de configuração do kafka broker.
 
 
 
